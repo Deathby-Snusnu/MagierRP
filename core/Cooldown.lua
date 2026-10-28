@@ -1,0 +1,3 @@
+local _, addon = ...
+function addon.CooldownReady() return GetTime() >= (addon.nextTextTime or 0) end
+function addon.StartCooldown() addon.nextTextTime = GetTime() + addon.db.cooldown end

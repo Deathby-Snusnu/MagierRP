@@ -1,0 +1,24 @@
+## Interface: 16001
+## Title: Magier RP
+## Version: 0.1.0
+## SavedVariablesPerCharacter: MagierRP_CharacterDB
+
+config\Settings.lua
+locales\Init.lua
+locales\deDE\Texts.lua
+locales\deDE\Racial.lua
+locales\deDE\Ambient.lua
+locales\enUS\Texts.lua
+locales\enUS\Racial.lua
+locales\enUS\Ambient.lua
+locales\frFR\Texts.lua
+locales\frFR\Racial.lua
+locales\frFR\Ambient.lua
+locales\Finalize.lua
+core\Database.lua
+core\Text.lua
+core\Chat.lua
+core\Cooldown.lua
+core\Ambient.lua
+core\Commands.lua
+MagierRP.lua
