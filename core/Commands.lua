@@ -171,8 +171,8 @@ SlashCmdList["MAGIERRP"] = function(message)
     else
         local key = input:upper()
         local known = false
-        for _, spell in ipairs(addon.spellKeys or {}) do
-            if spell == key then known = true; break end
+        for _, catalogKey in ipairs(GetKeys("all")) do
+            if catalogKey == key then known = true; break end
         end
         if not known then
             Notify("Unbekannter Befehl/Zauberschluessel: " .. key .. ". /mrp help")

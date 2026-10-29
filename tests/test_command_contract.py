@@ -17,6 +17,13 @@ class CommandContractTests(unittest.TestCase):
         chat = (ROOT / "core" / "Chat.lua").read_text(encoding="utf-8")
         self.assertIn('SendChatMessage(line:sub(2,-2), "EMOTE")', chat)
         self.assertIn('SendChatMessage(line, channel)', chat)
+        self.assertIn('IsInGroup(LE_PARTY_CATEGORY_INSTANCE)', chat)
+        self.assertIn('GetNumRaidMembers()', chat)
+        self.assertIn('GetNumPartyMembers()', chat)
+
+    def test_command_validation_uses_listed_catalog(self):
+        commands = (ROOT / "core" / "Commands.lua").read_text(encoding="utf-8")
+        self.assertIn('ipairs(GetKeys("all"))', commands)
 
     def test_control_center_fields(self):
         settings = (ROOT / "config" / "Settings.lua").read_text(encoding="utf-8")

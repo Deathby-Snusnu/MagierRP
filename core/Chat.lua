@@ -6,9 +6,15 @@ function addon.SendText(line)
     else
         local channel = addon.db and addon.db.chatChannel or "SAY"
         if channel == "AUTO" then
-            if IsInRaid and IsInRaid() then channel = "RAID"
-            elseif IsInGroup and IsInGroup() then channel = "PARTY"
-            else channel = "SAY" end
+            if IsInGroup and LE_PARTY_CATEGORY_INSTANCE and IsInGroup(LE_PARTY_CATEGORY_INSTANCE) then
+                channel = "INSTANCE_CHAT"
+            elseif (IsInRaid and IsInRaid()) or (GetNumRaidMembers and GetNumRaidMembers() > 0) then
+                channel = "RAID"
+            elseif (IsInGroup and IsInGroup()) or (GetNumPartyMembers and GetNumPartyMembers() > 0) then
+                channel = "PARTY"
+            else
+                channel = "SAY"
+            end
         end
         SendChatMessage(line, channel)
     end
