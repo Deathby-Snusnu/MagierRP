@@ -8,7 +8,7 @@ function addon.TryAmbient(_, force)
     if not force and not addon.db.ambientEnabled then return false end
     if not addon.db.ambientInCombat and UnitAffectingCombat and UnitAffectingCombat("player") then return false end
     local _, class = UnitClass("player")
-    if class ~= "MAGE" then print("MagierRP: nur für Magier."); return false end
+    if class ~= "MAGE" then return false end
     if not force and math.random(100) > addon.db.ambientChance then return false end
     if math.random(100) > addon.db.textChance then return false end
     if not addon.SendText(addon.AmbientText()) then return false end
@@ -17,7 +17,7 @@ end
 function addon.TryText(key)
     if not addon.ready then return false end
     local _, class = UnitClass("player")
-    if class ~= "MAGE" then print("MagierRP: nur für Magier."); return false end
+    if class ~= "MAGE" then return false end
     if not addon.CooldownReady() then return false end
     if math.random(100) > addon.db.textChance then return false end
     local line = addon.BuildText(key)
@@ -30,6 +30,10 @@ frame:RegisterEvent("PLAYER_LOGIN")
 frame:SetScript("OnEvent", function()
     addon.InitializeDatabase()
     addon.ready = true
+    local _, class = UnitClass("player")
     print("|cff69ccffMagierRP 0.1.0 geladen.|r /mrp help fuer Befehle.")
+    if class ~= "MAGE" then
+        print("|cff69ccffMagierRP:|r Kein Magier. Einstellungen verfuegbar, RP-Ausgabe deaktiviert.")
+    end
     if addon.ResetAmbientTimer then addon.ResetAmbientTimer() end
 end)
