@@ -165,7 +165,7 @@ SlashCmdList["MAGIERRP"] = function(message)
     elseif action == "ambient" then
         if argument ~= "" and argument:lower() ~= "test" then
             Notify("Benutzung: /mrp ambient [test]")
-        elseif not addon.TryAmbient() then
+        elseif not addon.TryAmbient(nil, true) then
             Notify("Kein Ambient-Text ausgegeben (Chance, Cooldown oder Charakterklasse pruefen).")
         end
     else
@@ -179,5 +179,4 @@ SlashCmdList["MAGIERRP"] = function(message)
         elseif not addon.TryText(key) then
             Notify("Keine Ausgabe fuer " .. key .. " (Chance, Cooldown, Textdaten oder Klasse pruefen).")
         end
-    end
 end

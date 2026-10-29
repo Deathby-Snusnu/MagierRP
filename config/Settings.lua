@@ -1,2 +1,2 @@
 local _, addon = ...
-addon.defaults = { textChance = 100, cooldown = 0, outputLanguage = "deDE", racialTextChance = 40, chatChannel = "SAY" }
+addon.defaults = { textChance = 100, cooldown = 0, outputLanguage = "deDE", racialTextChance = 40, chatChannel = "SAY", ambientEnabled = false, ambientInCombat = false, ambientChance = 30, ambientMinInterval = 120, ambientMaxInterval = 300 }
