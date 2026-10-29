@@ -23,4 +23,4 @@ function addon.TryText(key)
 end
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGIN")
-frame:SetScript("OnEvent", function() addon.InitializeDatabase(); addon.ready = true end)
+frame:SetScript("OnEvent", function() addon.InitializeDatabase(); addon.ready = true; print("|cff69ccffMagierRP 0.1.0 geladen.|r /mrp help fuer Befehle.") end)

@@ -7,6 +7,8 @@ function addon.InitializeDatabase()
     if type(addon.db.cooldown) ~= "number" or addon.db.cooldown < 0 then addon.db.cooldown = 0 end
     if type(addon.db.racialTextChance) ~= "number" then addon.db.racialTextChance = 40 end
     addon.db.racialTextChance = math.max(0, math.min(100, addon.db.racialTextChance))
+    local channels = {SAY=true,YELL=true,PARTY=true,RAID=true,INSTANCE_CHAT=true,AUTO=true}
+    if not channels[addon.db.chatChannel] then addon.db.chatChannel = "SAY" end
 end
 function addon.NormalizeRace(race)
     race = (race or ""):upper()
