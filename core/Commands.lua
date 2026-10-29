@@ -7,7 +7,7 @@ SlashCmdList["MAGIERRP"] = function(message)
         print("MagierRP: /mrp list | /mrp <SCHLUESSEL>")
         return
     end
-    if key == "AMBIENT" then addon.TryAmbient(); return end
+    if key == "AMBIENT" then addon.TryAmbient(nil, true); return end
     if key == "LIST" then
         print("MagierRP Zauberschluessel:")
         for _, spell in ipairs(addon.spellKeys) do print("  " .. spell) end

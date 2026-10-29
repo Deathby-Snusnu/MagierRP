@@ -9,11 +9,13 @@ class AmbientContractTests(unittest.TestCase):
         settings = (ROOT / "config/Settings.lua").read_text(encoding="utf-8")
         ambient = (ROOT / "core/Ambient.lua").read_text(encoding="utf-8")
         runtime = (ROOT / "MagierRP.lua").read_text(encoding="utf-8")
+        commands = (ROOT / "core/Commands.lua").read_text(encoding="utf-8")
         for key in ("ambientEnabled", "ambientInCombat", "ambientChance",
                     "ambientMinInterval", "ambientMaxInterval"):
             self.assertIn(key, settings)
         self.assertIn("function addon.ResetAmbientTimer()", ambient)
         self.assertIn("function addon.TryAmbient(_, force)", runtime)
+        self.assertIn('if key == "AMBIENT" then addon.TryAmbient(nil, true); return end', commands)
         self.assertIn("addon.ResetAmbientTimer()", runtime)
         self.assertIn("current ~= generation", ambient)
 
