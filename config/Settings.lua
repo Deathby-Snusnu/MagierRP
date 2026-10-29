@@ -1,2 +1,2 @@
 local _, addon = ...
-addon.defaults = { textChance = 100, cooldown = 0, outputLanguage = "deDE", racialTextChance = 40 }
+addon.defaults = { textChance = 100, cooldown = 0, outputLanguage = "deDE", racialTextChance = 40, chatChannel = "SAY" }
