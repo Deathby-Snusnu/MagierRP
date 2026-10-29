@@ -78,13 +78,16 @@ local function GetKeys(mode)
         end
     end
     -- In the generated mage addon, spellKeys is an explicit catalog.
-    for _, key in ipairs(addon.spellKeys or {}) do Add(key) end
+    if mode ~= "racial" then
+        for _, key in ipairs(addon.spellKeys or {}) do Add(key) end
+    end
     -- Keep extra text keys visible when maintained directly with RP Text Studio.
     for _, locale in ipairs({addon.db.outputLanguage or "deDE", "deDE"}) do
         local data = addon.localeData and addon.localeData[locale]
         if type(data) == "table" then
             if mode ~= "racial" then
-                for _, pool in ipairs({data.texts, data.Texts}) do
+                for _, name in ipairs({"texts", "Texts"}) do
+                    local pool = data[name]
                     if type(pool) == "table" then
                         for key in pairs(pool) do Add(key) end
                     end
@@ -92,7 +95,8 @@ local function GetKeys(mode)
             end
             if mode == "racial" then
                 local race = addon.NormalizeRace and addon.NormalizeRace(select(2, UnitRace("player"))) or select(2, UnitRace("player"))
-                for _, pool in ipairs({data.racial, data.Racial}) do
+                for _, name in ipairs({"racial", "Racial"}) do
+                    local pool = data[name]
                     if type(pool) == "table" and type(pool[race]) == "table" then
                         for key in pairs(pool[race]) do Add(key) end
                     end
