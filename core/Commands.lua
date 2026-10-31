@@ -179,4 +179,5 @@ SlashCmdList["MAGIERRP"] = function(message)
         elseif not addon.TryText(key) then
             Notify("Keine Ausgabe fuer " .. key .. " (Chance, Cooldown, Textdaten oder Klasse pruefen).")
         end
+    end
 end
