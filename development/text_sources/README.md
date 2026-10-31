@@ -26,6 +26,10 @@ Texte für sämtliche 67 Magier-Zauberschlüssel und zehn Völker.
   zielbezogene Texte (falls relevant) und `*...*`-Emotes in drei Sprachen.
 - `racial_spell_revisions.tsv`: zusätzliche, vom Volk und von der
   Zauberschule abhängige Magierstimmen in allen drei Sprachen.
+- `translated_theme_expansions.tsv`: ergänzende übersetzte Zaubertexte,
+  damit die Sprachfassungen vergleichbar umfangreich sind.
+- `translated_target_variants.tsv`: zusätzliche englische und französische
+  zielbezogene Texte für zehn Zauber.
 
 **Die Lua-Dateien sind der aktuelle Laufzeitstand.** Die beiden TSV-Dateien
 dokumentieren die neuen Formulierungen, sind aber selbst nicht vom WoW-Client
