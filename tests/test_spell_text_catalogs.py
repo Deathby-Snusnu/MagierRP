@@ -32,15 +32,18 @@ class SpellTextCatalogTests(unittest.TestCase):
                     self.assertGreaterEqual(len(QUOTED.findall(spell.group(3))), 2)
                     self.assertNotIn("%s", spell.group(3),
                         "Group/self text must not mention a selected target")
-                races = RACE.findall(racial)
+                races = list(RACE.finditer(racial))
                 self.assertEqual(len(races), 10)
-                race_spells = RACE_ENTRY.findall(racial)
-                self.assertEqual(len(race_spells), len(keys) * len(races))
-                self.assertEqual(Counter(k for k, _ in race_spells),
-                                 Counter({k: len(races) for k in keys}))
-                for key, items in race_spells:
-                    self.assertGreaterEqual(len(QUOTED.findall(items)), 3,
-                        f"{lang} {key} should have multiple racial variants")
+                self.assertEqual(len({race.group(1) for race in races}), 10)
+                for index, race in enumerate(races):
+                    stop = races[index + 1].start() if index + 1 < len(races) else len(racial)
+                    race_spells = RACE_ENTRY.findall(racial[race.end():stop])
+                    self.assertEqual(Counter(k for k, _ in race_spells),
+                                     Counter({k: 1 for k in keys}),
+                                     f"{lang} {race.group(1)} spell coverage")
+                    for key, items in race_spells:
+                        self.assertGreaterEqual(len(QUOTED.findall(items)), 3,
+                            f"{lang} {race.group(1)} {key} should have multiple racial variants")
 
     def test_generic_placeholder_phrases_removed(self):
         unwanted = (
