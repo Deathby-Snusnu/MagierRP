@@ -11,7 +11,7 @@ class MagierCommandsTest(unittest.TestCase):
         self.assertIn('SLASH_MAGIERRP1 = "/mrp"', code)
         self.assertIn('SLASH_MAGIERRP2 = "/magierrp"', code)
         self.assertIn('SlashCmdList["MAGIERRP"] = function(message)', code)
-        self.assertTrue(code.endswith("    end\\nend".replace("\\n", "\n")))
+        self.assertEqual(code.splitlines()[-2:], ["    end", "end"])
 
 if __name__ == "__main__":
     unittest.main()
