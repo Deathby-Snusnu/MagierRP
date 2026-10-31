@@ -1,0 +1,27 @@
+# MagierRP
+
+Copyright (c) 2026 Hannes Weichselbaum
+
+This distribution uses split licensing by file category. It is not an
+"either/or" dual license. The SPDX identifiers and component notices in each
+file are authoritative.
+
+## Source code
+
+Program code is licensed under the Mozilla Public License 2.0 (MPL-2.0).
+See [LICENSE-CODE](LICENSE-CODE).
+
+## Role-playing texts and translations
+
+Role-playing dialogue, emote text, ambient text, racial text pools, and
+translations are licensed under Creative Commons Attribution-ShareAlike 4.0
+International (CC BY-SA 4.0). See [LICENSE-TEXTS](LICENSE-TEXTS).
+
+Python development sources containing both program logic and creative text
+data identify both component licenses. See [LICENSING.md](LICENSING.md).
+
+## Trademark notice
+
+World of Warcraft and related names and trademarks are property of Blizzard
+Entertainment, Inc. This is an independent fan-created project and is not
+affiliated with or endorsed by Blizzard Entertainment.
