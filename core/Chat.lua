@@ -23,7 +23,14 @@ function addon.SendText(line)
                 channel = "SAY"
             end
         end
-        SendChatMessage(line, channel)
+        local languageID
+        if channel == "SAY" or channel == "YELL" then
+            local rpChat = _G.RPChatMod
+            if type(rpChat) == "table" and type(rpChat.GetChatLanguageID) == "function" then
+                languageID = rpChat.GetChatLanguageID(channel)
+            end
+        end
+        SendChatMessage(line, channel, languageID)
     end
     return true
 end
