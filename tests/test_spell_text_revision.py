@@ -45,6 +45,10 @@ class SpellRevisionTests(unittest.TestCase):
                 actual = {key: (target, group) for key, target, group in ENTRY.findall(runtime)}
                 self.assertEqual(set(actual), set(revised))
                 self.assertFalse(any(phrase in runtime for phrase in STALE))
+                target_count = sum(len(TEXT.findall(target)) for target, _ in actual.values())
+                group_count = sum(len(TEXT.findall(group)) for _, group in actual.values())
+                self.assertEqual(target_count, 93)
+                self.assertEqual(group_count, 525)
                 for key, row in revised.items():
                     target, group = actual[key]
                     self.assertIn(row[offset + 1], group)
@@ -70,6 +74,20 @@ class SpellRevisionTests(unittest.TestCase):
                 for voice in voices.values():
                     self.assertIn(voice[offset], runtime)
                     self.assertIn(voice[offset + 1], runtime)
+
+    def test_translated_variants_are_in_runtime_pools(self):
+        themes = revision_rows("translated_theme_expansions.tsv", 7)
+        targets = revision_rows("translated_target_variants.tsv", 3)
+        self.assertEqual(len(themes), 10)
+        self.assertEqual(len(targets), 10)
+        for lang, theme_offset, target_offset in (("enUS", 1, 1), ("frFR", 4, 2)):
+            runtime = (ROOT / "locales" / lang / "Texts.lua").read_text(encoding="utf-8")
+            for row in themes:
+                for phrase in row[theme_offset:theme_offset + 3]:
+                    self.assertIn(phrase, runtime)
+            entries = {key: target for key, target, _ in ENTRY.findall(runtime)}
+            for key, english, french in targets:
+                self.assertIn(english if lang == "enUS" else french, entries[key])
 
     def test_only_spell_text_files_were_targeted(self):
         self.assertEqual(len(revision_rows("spell_revisions.tsv", 10)), 67)
