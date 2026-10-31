@@ -1,3 +1,10 @@
+-- SPDX-License-Identifier: CC-BY-SA-4.0
+-- Copyright (c) 2026 Hannes Weichselbaum
+--
+-- Role-playing dialogue, emote, ambient, and translation text in this
+-- file is licensed under the Creative Commons Attribution-ShareAlike
+-- 4.0 International License.
+
 local _, addon = ...
 addon.localeData.frFR.texts = {
     FIREBALL = { name = "Boule de feu", ziel = { "Sentez la chaleur, %s !", "*lance Boule de feu on %s.*", "%s, vous vous souviendrez de cette formule !", "*dirige une rune soigneusement tracée vers %s.*" }, gruppe = { "Sentez la chaleur !", "*conjures Boule de feu.*", "Du moins, c'est ce que prévoit la théorie des arcanes.", "*trace une rune fugitive dans les airs.*", "La dernière tentative fut moins élégante.", "*murmure une formule en observant les étincelles.*", "Le feu est un négociateur sincère.", "*fait danser des étincelles ambrées.*" } },

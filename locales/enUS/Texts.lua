@@ -1,3 +1,10 @@
+-- SPDX-License-Identifier: CC-BY-SA-4.0
+-- Copyright (c) 2026 Hannes Weichselbaum
+--
+-- Role-playing dialogue, emote, ambient, and translation text in this
+-- file is licensed under the Creative Commons Attribution-ShareAlike
+-- 4.0 International License.
+
 local _, addon = ...
 addon.localeData.enUS.texts = {
     FIREBALL = { name = "Fireball", ziel = { "Feel the heat, %s.", "*casts Fireball on %s.*", "%s, you will remember this formula!", "*aims a carefully traced rune at %s.*" }, gruppe = { "Feel the heat.", "*conjures Fireball.*", "At least, that is what the arcane theory predicts.", "*traces a fleeting rune in the air.*", "The last attempt was less elegant.", "*murmurs an incantation and watches the rising sparks.*", "Fire has always been an honest negotiator.", "*spins a ribbon of amber sparks.*" } },

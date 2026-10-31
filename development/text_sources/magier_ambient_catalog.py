@@ -1,3 +1,8 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+# Copyright (c) 2026 Hannes Weichselbaum
+#
+# Creative RP text data and translations: CC BY-SA 4.0.
+
 """Race-specific and neutral mage ambience, output as SAY or *EMOTE*."""
 RACES = ("GNOME", "HUMAN", "HIGH_ELF", "BLOODELF", "NIGHTELF", "UNDEAD", "TROLL", "ORC", "DRAENEI", "DWARF")
 THEMES = {

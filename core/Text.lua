@@ -1,3 +1,10 @@
+-- SPDX-License-Identifier: MPL-2.0
+-- Copyright (c) 2026 Hannes Weichselbaum
+--
+-- This Source Code Form is subject to the terms of the Mozilla Public
+-- License, v. 2.0. If a copy of the MPL was not distributed with this
+-- file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 local _, addon = ...
 local friendly = { ARCANE_INTELLECT=true, ARCANE_BRILLIANCE=true, SLOW_FALL=true, REMOVE_LESSER_CURSE=true, DAMPEN_MAGIC=true, AMPLIFY_MAGIC=true }
 local selfOnly = { ICE_BARRIER=true, ICE_BLOCK=true, BLINK=true, EVOCATION=true, MANA_SHIELD=true, CONJURE_FOOD=true, CONJURE_WATER=true, CREATE_MANA_GEM=true, PORTAL=true, TELEPORT=true }

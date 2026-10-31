@@ -1,3 +1,10 @@
+-- SPDX-License-Identifier: CC-BY-SA-4.0
+-- Copyright (c) 2026 Hannes Weichselbaum
+--
+-- Role-playing dialogue, emote, ambient, and translation text in this
+-- file is licensed under the Creative Commons Attribution-ShareAlike
+-- 4.0 International License.
+
 local _, addon = ...
 addon.localeData.deDE.texts = {
     FIREBALL = { name = "Feuerball", ziel = { "Euch wird gleich warm, %s.", "*wirkt Feuerball auf %s.*", "%s, Ihr werdet noch von dieser Formel hören!", "*richtet eine sorgfältig gezogene Rune auf %s.*" }, gruppe = { "Euch wird gleich warm.", "*konzentriert sich und entfesselt Feuerball.*", "Die arkane Theorie sieht das jedenfalls so vor.", "*zieht mit zwei Fingern eine flüchtige Rune in die Luft.*", "Der letzte Versuch war weniger elegant.", "*murmelt eine Formel und verfolgt aufmerksam die aufsteigenden Funken.*", "Flammen sind ehrlicher als viele Verhandlungen.", "*entfacht eine Spirale bernsteinfarbener Funken.*", "Ich hoffe, Ihr mögt es knusprig.", "*zeichnet ein glühendes Siegel in die Luft.*", "Ein sauberer Feuerball braucht keinen zweiten Versuch.", "*verdichtet eine glühende Kugel zwischen den Handflächen.*" } },

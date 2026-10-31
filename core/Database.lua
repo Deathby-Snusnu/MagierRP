@@ -1,3 +1,10 @@
+-- SPDX-License-Identifier: MPL-2.0
+-- Copyright (c) 2026 Hannes Weichselbaum
+--
+-- This Source Code Form is subject to the terms of the Mozilla Public
+-- License, v. 2.0. If a copy of the MPL was not distributed with this
+-- file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 local _, addon = ...
 function addon.InitializeDatabase()
     if type(MagierRP_CharacterDB) ~= "table" then MagierRP_CharacterDB = {} end

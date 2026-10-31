@@ -1,3 +1,9 @@
+# SPDX-License-Identifier: MPL-2.0 AND CC-BY-SA-4.0
+# Copyright (c) 2026 Hannes Weichselbaum
+#
+# Python selection/assembly code: MPL-2.0.
+# Creative RP text data and translations: CC BY-SA 4.0.
+
 """Race- and school-specific MagierRP spell voices, independent from ambient chatter."""
 from magier_ambient_catalog import RACES
 from magier_voice_banks import theme_for
