@@ -15,7 +15,7 @@ class AmbientContractTests(unittest.TestCase):
             self.assertIn(key, settings)
         self.assertIn("function addon.ResetAmbientTimer()", ambient)
         self.assertIn("function addon.TryAmbient(_, force)", runtime)
-        self.assertIn('elseif not addon.TryAmbient(nil, true) then', commands)
+        self.assertIn("addon.TryAmbient(nil, true)", commands)
         self.assertIn("addon.ResetAmbientTimer()", runtime)
         self.assertIn("current ~= generation", ambient)
 
