@@ -47,7 +47,7 @@ class SpellRevisionTests(unittest.TestCase):
                 self.assertFalse(any(phrase in runtime for phrase in STALE))
                 target_count = sum(len(TEXT.findall(target)) for target, _ in actual.values())
                 group_count = sum(len(TEXT.findall(group)) for _, group in actual.values())
-                self.assertEqual(target_count, 93)
+                self.assertEqual(target_count, 95)
                 self.assertEqual(group_count, 525)
                 for key, row in revised.items():
                     target, group = actual[key]
