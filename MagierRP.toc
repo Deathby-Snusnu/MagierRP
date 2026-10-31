@@ -5,6 +5,7 @@
 ## Title: Magier RP
 ## Version: 0.1.0
 ## SavedVariablesPerCharacter: MagierRP_CharacterDB
+## OptionalDeps: RPChatMod
 
 config\Settings.lua
 locales\Init.lua

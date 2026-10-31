@@ -12,6 +12,7 @@ function addon.SendText(line)
         SendChatMessage(line:sub(2,-2), "EMOTE")
     else
         local channel = addon.db and addon.db.chatChannel or "SAY"
+        local isAutoChannel = channel == "AUTO"
         if channel == "AUTO" then
             if IsInGroup and LE_PARTY_CATEGORY_INSTANCE and IsInGroup(LE_PARTY_CATEGORY_INSTANCE) then
                 channel = "INSTANCE_CHAT"
@@ -23,7 +24,14 @@ function addon.SendText(line)
                 channel = "SAY"
             end
         end
-        SendChatMessage(line, channel)
+        local languageID
+        if not isAutoChannel and (channel == "SAY" or channel == "YELL") then
+            local rpChat = _G.RPChatMod
+            if type(rpChat) == "table" and type(rpChat.GetChatLanguageID) == "function" then
+                languageID = rpChat.GetChatLanguageID(channel)
+            end
+        end
+        SendChatMessage(line, channel, languageID)
     end
     return true
 end

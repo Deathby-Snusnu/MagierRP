@@ -16,7 +16,7 @@ class CommandContractTests(unittest.TestCase):
     def test_channel_and_emote(self):
         chat = (ROOT / "core" / "Chat.lua").read_text(encoding="utf-8")
         self.assertIn('SendChatMessage(line:sub(2,-2), "EMOTE")', chat)
-        self.assertIn('SendChatMessage(line, channel)', chat)
+        self.assertIn('SendChatMessage(line, channel, languageID)', chat)
         self.assertIn('IsInGroup(LE_PARTY_CATEGORY_INSTANCE)', chat)
         self.assertIn('GetNumRaidMembers()', chat)
         self.assertIn('GetNumPartyMembers()', chat)
