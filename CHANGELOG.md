@@ -1,3 +1,9 @@
+## Unreleased
+
+- Alle 67 Magier-Zauberschlüssel in deDE, enUS und frFR sprachlich überarbeitet: wiederholte Füllsätze entfernt, neue zauberspezifische Ansprachen und Emotes ergänzt.
+- Rassespezifische Zauberstimmen für zehn Völker in den Bereichen Feuer, Frost und Arkane Magie erweitert, ohne Ambient-/Klassentexte anzufassen.
+- Umfang der übersetzten Zauberpools an die deutsche Sammlung angeglichen, mit Tests und dokumentierten kreativen Quellen.
+
 # Changelog
 
 ## Aktueller Quellstand
