@@ -1,3 +1,11 @@
+## 0.1.1 (Entwicklungsstand)
+
+- Zaubertexte für alle 67 Schlüssel in Deutsch, Englisch und Französisch erweitert; häufig wiederholte Fülltexte entfernt.
+- Zehn Rassenprofile pro Sprache um zusätzliche zauberspezifische Formulierungen und Emotes erweitert, identische Standardphrasen reduziert.
+- Selbst-, Rüstungs-, Beschwörungs- und Flächenzauber nennen keine zufällig ausgewählten Ziele mehr. Direkte Angriffszauber dürfen weiter passende Gegner ansprechen.
+- Tests für Zielauswahl, Sprachdatei-Vollständigkeit und rassespezifische Varianten ergänzt.
+- Keine Änderung der Zauberschlüssel oder Slash-Befehle.
+
 ## Unreleased
 
 - Alle 67 Magier-Zauberschlüssel in deDE, enUS und frFR sprachlich überarbeitet: wiederholte Füllsätze entfernt, neue zauberspezifische Ansprachen und Emotes ergänzt.
