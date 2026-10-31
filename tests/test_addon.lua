@@ -39,6 +39,7 @@ local function newAddon(savedDatabase)
         race = "GNOME",
         target = "Anduin",
         player = "Aegwynn",
+        targetIsPlayer = false,
         canAssist = true,
         canAttack = true,
         now = 100,
@@ -91,7 +92,7 @@ local function newAddon(savedDatabase)
         return unit == "target" and state.canAttack
     end
     environment.UnitIsUnit = function(a, b)
-        return a == "target" and b == "player" and state.target == state.player
+        return a == "target" and b == "player" and state.targetIsPlayer
     end
     environment.UnitName = function(unit)
         if unit == "player" then return state.player end
@@ -185,6 +186,21 @@ test("localized text resolves targets and falls back for unavailable languages",
     assert(not app.BuildText("ARCANE_INTELLECT"):find("Aegwynn", 1, true), "self buff named caster")
     state.canAssist = true
     contains(app.BuildText("ARCANE_INTELLECT"), "Anduin", "real friendly target")
+end)
+
+test("friendly target identity takes precedence over matching names", function()
+    local env, app, state = newAddon()
+    state.login()
+    app.db.racialTextChance = 0
+    state.target = state.player
+    contains(app.BuildText("ARCANE_INTELLECT"), state.player, "same-name friendly target")
+    state.targetIsPlayer = true
+    assert(not app.BuildText("ARCANE_INTELLECT"):find(state.player, 1, true),
+        "self target named caster")
+    state.targetIsPlayer = false
+    env.UnitIsUnit = nil
+    assert(not app.BuildText("ARCANE_INTELLECT"):find(state.player, 1, true),
+        "name fallback recognized player")
 end)
 
 test("self, armor, conjure and area spells do not mention a selected opponent", function()

@@ -24,11 +24,13 @@ local function SelectedTarget(key)
     if friendlyTarget[key] then
         if not UnitCanAssist("player", "target") then return nil end
         -- A self-buff must never speak an unrelated selected unit's name.
-        if type(UnitIsUnit) == "function" and UnitIsUnit("target", "player") then
+        local name = UnitName("target")
+        if type(UnitIsUnit) == "function" then
+            if UnitIsUnit("target", "player") then return nil end
+        elseif name == UnitName("player") then
             return nil
         end
-        local name = UnitName("target")
-        return name ~= UnitName("player") and name or nil
+        return name
     end
     if hostileTarget[key] then
         if type(UnitCanAttack) == "function" and not UnitCanAttack("player", "target") then
