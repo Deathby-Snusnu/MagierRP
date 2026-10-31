@@ -38,7 +38,7 @@ frame:SetScript("OnEvent", function()
     addon.InitializeDatabase()
     addon.ready = true
     local _, class = UnitClass("player")
-    print("|cff69ccffMagierRP 0.1.0 geladen.|r /mrp help fuer Befehle.")
+    print("|cff69ccffMagierRP 0.1.1 geladen.|r /mrp help fuer Befehle.")
     if class ~= "MAGE" then
         print("|cff69ccffMagierRP:|r Kein Magier. Einstellungen verfuegbar, RP-Ausgabe deaktiviert.")
     end
