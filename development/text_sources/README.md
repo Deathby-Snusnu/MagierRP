@@ -48,3 +48,11 @@ Python-Auswahl- und Zusammenstellungslogik steht unter MPL-2.0.
 Gemischte Dateien kennzeichnen beide Bestandteile mit
 `MPL-2.0 AND CC-BY-SA-4.0`; dies ist keine Wahl zwischen zwei Lizenzen.
 Details und Rechtstexte: [Lizenzzuordnung](../../LICENSING.md).
+
+## Hinweis zu MagierRP 0.1.1
+
+Die Runtime-Dateien `locales/{deDE,enUS,frFR}/{Texts,Racial}.lua` wurden
+redaktionell erweitert. **Die hier abgelegten historischen Python-Vorlagen
+sind nicht vollständig synchronisiert.** Ein erneutes Generieren aus diesen
+Vorlagen würde die neuen Inhalte möglicherweise überschreiben. Für die
+Laufzeit und Bearbeitung mit RPTextStudio sind die Lua-Sprachdateien maßgeblich.

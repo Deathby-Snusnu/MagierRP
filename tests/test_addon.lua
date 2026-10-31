@@ -39,7 +39,9 @@ local function newAddon(savedDatabase)
         race = "GNOME",
         target = "Anduin",
         player = "Aegwynn",
+        targetIsPlayer = false,
         canAssist = true,
+        canAttack = true,
         now = 100,
         roll = 1,
         choice = 1,
@@ -85,6 +87,12 @@ local function newAddon(savedDatabase)
     end
     environment.UnitCanAssist = function(_, unit)
         return unit == "target" and state.canAssist
+    end
+    environment.UnitCanAttack = function(_, unit)
+        return unit == "target" and state.canAttack
+    end
+    environment.UnitIsUnit = function(a, b)
+        return a == "target" and b == "player" and state.targetIsPlayer
     end
     environment.UnitName = function(unit)
         if unit == "player" then return state.player end
@@ -174,7 +182,50 @@ test("localized text resolves targets and falls back for unavailable languages",
     app.db.outputLanguage = "missing"
     contains(app.BuildText("FIREBALL"), "Anduin", "German fallback target text")
     state.canAssist = false
-    contains(app.BuildText("ARCANE_INTELLECT"), "Aegwynn", "friendly spell self fallback")
+    assert(not app.BuildText("ARCANE_INTELLECT"):find("Anduin", 1, true), "self buff leaked selected enemy")
+    assert(not app.BuildText("ARCANE_INTELLECT"):find("Aegwynn", 1, true), "self buff named caster")
+    state.canAssist = true
+    contains(app.BuildText("ARCANE_INTELLECT"), "Anduin", "real friendly target")
+end)
+
+test("friendly target identity takes precedence over matching names", function()
+    local env, app, state = newAddon()
+    state.login()
+    app.db.racialTextChance = 0
+    state.target = state.player
+    contains(app.BuildText("ARCANE_INTELLECT"), state.player, "same-name friendly target")
+    state.targetIsPlayer = true
+    assert(not app.BuildText("ARCANE_INTELLECT"):find(state.player, 1, true),
+        "self target named caster")
+    state.targetIsPlayer = false
+    env.UnitIsUnit = nil
+    assert(not app.BuildText("ARCANE_INTELLECT"):find(state.player, 1, true),
+        "name fallback recognized player")
+end)
+
+test("self, armor, conjure and area spells do not mention a selected opponent", function()
+    local _, app, state = newAddon()
+    state.login()
+    app.db.racialTextChance = 0
+    state.canAssist = false
+    state.canAttack = true
+    local untargeted = {
+        "ICE_BARRIER", "ICE_BLOCK", "FROST_ARMOR", "ICE_ARMOR", "MAGE_ARMOR",
+        "FIRE_WARD", "FROST_WARD", "MANA_SHIELD", "ARCANE_POWER",
+        "ARCANE_BRILLIANCE", "EVOCATION", "BLINK", "COLD_SNAP",
+        "CONJURE_FOOD", "CONJURE_WATER", "CREATE_MANA_GEM",
+        "CONJURE_MANA_RUBY", "PORTAL_STORMWIND", "TELEPORT_IRONFORGE",
+        "FROST_NOVA", "BLIZZARD", "FLAMESTRIKE",
+    }
+    for _, key in ipairs(untargeted) do
+        local line = app.BuildText(key)
+        assert(type(line) == "string", "missing " .. key)
+        assert(not line:find("Anduin", 1, true), key .. " leaked selected target")
+        assert(not line:find("Aegwynn", 1, true), key .. " named caster")
+    end
+    state.canAttack = false
+    local line = app.BuildText("ICE_LANCE")
+    assert(not line:find("Anduin", 1, true), "hostile-only spell used friendly selection")
 end)
 
 test("racial spell pools are selected at the configured chance", function()
@@ -190,10 +241,10 @@ test("slash aliases, class restriction, chance, and cooldown are enforced", func
     local env, app, state = newAddon()
     equal(env.SLASH_MAGIERRP1, "/mrp")
     equal(env.SLASH_MAGIERRP2, "/magierrp")
-    state.command("list")
-    contains(table.concat(state.messages, "\n"), "MagierRP Zauberschluessel")
     equal(app.TryText("FIREBALL"), false)
     state.login()
+    state.command("list")
+    contains(table.concat(state.messages, "\n"), "Zauberschluessel")
     app.db.textChance = 0
     equal(app.TryText("FIREBALL"), false)
     equal(#state.sent, 0)
@@ -205,7 +256,8 @@ test("slash aliases, class restriction, chance, and cooldown are enforced", func
     equal(app.TryText("FIREBALL"), true)
     state.class = "PRIEST"
     equal(app.TryText("FIREBALL"), false)
-    contains(table.concat(state.messages, "\n"), "nur für Magier")
+    -- Ignored classes must not emit warning spam.
+    equal(app.TryText("FIREBALL"), false)
 end)
 
 test("manual ambient and emotes use the intended chat channels", function()
@@ -222,9 +274,9 @@ test("manual ambient and emotes use the intended chat channels", function()
 end)
 
 for _, item in ipairs(tests) do
-    local ok, err = pcall(item[2])
+    local ok, err = pcall(item.callback)
     if not ok then
-        io.stderr:write("FAIL: " .. item[1] .. "\n" .. tostring(err) .. "\n")
+        io.stderr:write("FAIL: " .. item.name .. "\n" .. tostring(err) .. "\n")
         os.exit(1)
     end
 end
