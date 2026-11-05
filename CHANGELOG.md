@@ -1,4 +1,6 @@
-## 0.1.1 (Entwicklungsstand)
+## Aktueller Quellstand: 0.1.1 (unveröffentlicht)
+
+- Version `0.1.1` entspricht dem derzeitigen `MagierRP.toc`-Stand.
 
 - Zaubertexte für alle 67 Schlüssel in Deutsch, Englisch und Französisch erweitert; häufig wiederholte Fülltexte entfernt.
 - Zehn Rassenprofile pro Sprache um zusätzliche zauberspezifische Formulierungen und Emotes erweitert, identische Standardphrasen reduziert.
@@ -26,8 +28,8 @@
 - Entwicklungsquellen unter `development/text_sources` enthalten ergänzende
   Zauber-, Rassen-, Ambient- und Sprachvarianten; sie werden nicht vom AddOn
   selbst geladen.
-- Die TOC deklariert Version `0.1.0`. Eine gesicherte Zuordnung dieser
-  Funktionen zu weiteren Releases ist nicht dokumentiert.
+- Der ursprüngliche TOC-Stand war Version `0.1.0`. Die späteren Änderungen
+  werden unter dem aktuellen Quellstand `0.1.1` dokumentiert.
 
 ## GitHub-Hauptzweig nach lokalem Stand (2026-10-29)
 
