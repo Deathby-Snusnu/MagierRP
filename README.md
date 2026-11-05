@@ -2,7 +2,7 @@
 
 MagierRP ist ein eigenständiges WoW-Rollenspiel-AddOn für die Klasse `MAGE`.
 Es bietet manuell aufgerufene Zauber- und Ambient-Texte in `deDE`, `enUS`
-und `frFR`. Die TOC deklariert Version `0.1.0`, Interface `16001` und die
+und `frFR`. Die TOC deklariert Version `0.1.1`, Interface `16001` und die
 charakterbezogene SavedVariable `MagierRP_CharacterDB`.
 
 ## Installation
