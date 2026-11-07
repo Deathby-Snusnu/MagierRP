@@ -1,0 +1,14 @@
+name: MagierRP creative text coverage
+on:
+  push:
+  pull_request:
+jobs:
+  content:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate all locales, action keys and version
+        run: python -m unittest discover -s tests -p 'test_rp_content_expansion.py' -v

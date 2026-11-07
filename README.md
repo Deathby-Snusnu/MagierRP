@@ -1,8 +1,24 @@
 # Magier RP
 
+## Neue freie RP-Aktionen (0.1.2)
+
+Diese sechs manuellen Textaktionen ergänzen das bestehende Zauberbuch,
+stehen aber **nicht für trainierbare WoW-Fähigkeiten**:
+- `ARCANE_RESEARCH`
+- `LEYLINE_SENSE`
+- `WAND_MAINTENANCE`
+- `PORTAL_ETIQUETTE`
+- `REAGENT_PREPARATION`
+- `SPELLBOOK_STUDY`
+
+Jeder Schlüssel hat eigenständige gesprochene Texte und /me-Handlungen
+in Deutsch, Englisch und Französisch. Alte RP-Makros, persönliche
+Texte und gespeicherte Einstellungen bleiben unverändert.
+
+
 MagierRP ist ein eigenständiges WoW-Rollenspiel-AddOn für die Klasse `MAGE`.
 Es bietet manuell aufgerufene Zauber- und Ambient-Texte in `deDE`, `enUS`
-und `frFR`. Die TOC deklariert Version `0.1.1`, Interface `16001` und die
+und `frFR`. Die TOC deklariert Version `0.1.2`, Interface `16001` und die
 charakterbezogene SavedVariable `MagierRP_CharacterDB`.
 
 ## Installation
