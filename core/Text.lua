@@ -10,6 +10,7 @@ local _, addon = ...
 -- spells are self-casts or area effects even when an unrelated target exists.
 local friendlyTarget = {
     ARCANE_INTELLECT=true, SLOW_FALL=true, REMOVE_LESSER_CURSE=true,
+    ARCANE_RESEARCH=true, PORTAL_ETIQUETTE=true,
     DAMPEN_MAGIC=true, AMPLIFY_MAGIC=true,
 }
 local hostileTarget = {
