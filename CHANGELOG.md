@@ -1,5 +1,7 @@
 ## Aktueller Quellstand: 0.1.2 (unveröffentlicht)
 
+- Version `0.1.2` entspricht der aktualisierten MagierRP.toc-Datei.
+
 - Sechs eigenständige, manuell nutzbare Magier-RP-Aktionen in deDE/enUS/frFR ergänzt: Forschung, Leylinien, Stabpflege, Portaldisziplin, Reagenzien und Zauberbuchstudium.
 - Die bisherigen 67 Zauberschlüssel, rassenspezifischen Texte und SavedVariables bleiben unangetastet; insgesamt jetzt 73 allgemeine Textaktionen.
 - Begleitende Python-Regressionstests für Sprachparität und Schlüsselbestand.
