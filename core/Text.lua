@@ -6,6 +6,19 @@
 -- file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 local _, addon = ...
+
+-- Protected WoW clients may return secret strings for unit names.
+-- Use a safe placeholder before comparison or text interpolation.
+local function SafeUnitName(unit)
+    local name = UnitName(unit)
+    if type(issecretvalue) == "function" and issecretvalue(name) then
+        if unit == "pet" then return "Euer Begleiter" end
+        if unit == "player" then return "Ihr" end
+        return "das Ziel"
+    end
+    return name
+end
+
 -- Only explicitly targeted spells may name the selected unit. Many mage
 -- spells are self-casts or area effects even when an unrelated target exists.
 local friendlyTarget = {
@@ -25,10 +38,10 @@ local function SelectedTarget(key)
     if friendlyTarget[key] then
         if not UnitCanAssist("player", "target") then return nil end
         -- A self-buff must never speak an unrelated selected unit's name.
-        local name = UnitName("target")
+        local name = SafeUnitName("target")
         if type(UnitIsUnit) == "function" then
             if UnitIsUnit("target", "player") then return nil end
-        elseif name == UnitName("player") then
+        elseif name == SafeUnitName("player") then
             return nil
         end
         return name
@@ -37,7 +50,7 @@ local function SelectedTarget(key)
         if type(UnitCanAttack) == "function" and not UnitCanAttack("player", "target") then
             return nil
         end
-        return UnitName("target")
+        return SafeUnitName("target")
     end
     return nil
 end
