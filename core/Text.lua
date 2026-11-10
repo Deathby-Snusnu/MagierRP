@@ -14,7 +14,7 @@ local function SafeUnitName(unit)
     if type(issecretvalue) == "function" and issecretvalue(name) then
         if unit == "pet" then return "Euer Begleiter" end
         if unit == "player" then return "Ihr" end
-        return "das Ziel"
+        return ({ deDE = "das Ziel", enUS = "the target", frFR = "la cible" })[addon.db.outputLanguage] or "das Ziel"
     end
     return name
 end
