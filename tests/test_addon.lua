@@ -38,6 +38,7 @@ local function newAddon(savedDatabase)
         class = "MAGE",
         race = "GNOME",
         target = "Anduin",
+        secretTarget = "SECRET-TARGET-SENTINEL",
         player = "Aegwynn",
         targetIsPlayer = false,
         canAssist = true,
@@ -97,6 +98,9 @@ local function newAddon(savedDatabase)
     environment.UnitName = function(unit)
         if unit == "player" then return state.player end
         return state.target
+    end
+    environment.issecretvalue = function(value)
+        return value == state.secretTarget
     end
     environment.GetTime = function() return state.now end
     environment.SendChatMessage = function(text, channel)
@@ -186,6 +190,36 @@ test("localized text resolves targets and falls back for unavailable languages",
     assert(not app.BuildText("ARCANE_INTELLECT"):find("Aegwynn", 1, true), "self buff named caster")
     state.canAssist = true
     contains(app.BuildText("ARCANE_INTELLECT"), "Anduin", "real friendly target")
+end)
+
+test("secret target names use localized placeholders and keep targeted pools", function()
+    local _, app, state = newAddon()
+    state.login()
+    app.db.racialTextChance = 0
+    state.target = state.secretTarget
+    local locales = {
+        { language = "deDE", placeholder = "das Ziel" },
+        { language = "enUS", placeholder = "the target" },
+        { language = "frFR", placeholder = "la cible" },
+    }
+    for _, locale in ipairs(locales) do
+        app.db.outputLanguage = locale.language
+        for _, key in ipairs({ "ARCANE_INTELLECT", "FIREBALL" }) do
+            local entry = app.localeData[locale.language].texts[key]
+            local expected = entry.ziel[1]:gsub("%%s", locale.placeholder)
+            local text = app.BuildText(key)
+            equal(text, expected, locale.language .. " " .. key .. " secret target")
+            assert(not text:find(state.secretTarget, 1, true), "secret target name leaked")
+        end
+    end
+end)
+
+test("target names remain usable without the secret-value API", function()
+    local env, app, state = newAddon()
+    state.login()
+    app.db.racialTextChance = 0
+    env.issecretvalue = nil
+    contains(app.BuildText("FIREBALL"), "Anduin", "target text without secret API")
 end)
 
 test("friendly target identity takes precedence over matching names", function()
