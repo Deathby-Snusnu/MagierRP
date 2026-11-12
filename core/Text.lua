@@ -12,9 +12,7 @@ local _, addon = ...
 local function SafeUnitName(unit)
     local name = UnitName(unit)
     if type(issecretvalue) == "function" and issecretvalue(name) then
-        if unit == "pet" then return "Euer Begleiter" end
-        if unit == "player" then return "Ihr" end
-        return ({ deDE = "das Ziel", enUS = "the target", frFR = "la cible" })[addon.db.outputLanguage] or "das Ziel"
+        return nil -- Never substitute awkward generic target names.
     end
     return name
 end
@@ -72,7 +70,18 @@ function addon.BuildText(key)
     end
     if type(pool) ~= "table" or #pool == 0 then pool = entry.gruppe end
     if type(pool) ~= "table" or #pool == 0 then return nil end
-    return pool[math.random(#pool)]:gsub("%%([%%s])", function(token)
+    local line = pool[math.random(#pool)]
+    if not target and line:find("%s", 1, true) then
+        local alternatives = {}
+        for _, candidate in ipairs(entry.gruppe or {}) do
+            if type(candidate) == "string" and not candidate:find("%s", 1, true) then
+                alternatives[#alternatives + 1] = candidate
+            end
+        end
+        if #alternatives == 0 then return nil end
+        line = alternatives[math.random(#alternatives)]
+    end
+    return line:gsub("%%([%%s])", function(token)
         return token == "%" and "%" or (target or "")
     end)
 end
