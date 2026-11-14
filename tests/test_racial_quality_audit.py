@@ -12,9 +12,9 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 LOCALES = ("deDE", "enUS", "frFR")
-RACE = re.compile(r"^    ([A-Z][A-Z0-9_]+) = \\{$", re.M)
-ENTRY = re.compile(r"^        ([A-Z][A-Z0-9_]+) = \\{ (.*?) \\},?$", re.M)
-QUOTED = re.compile(r'"(?:\\\\.|[^"\\\\])*"')
+RACE = re.compile(r"^    ([A-Z][A-Z0-9_]+) = \{$", re.M)
+ENTRY = re.compile(r"^        ([A-Z][A-Z0-9_]+) = \{ (.*?) \},?$", re.M)
+QUOTED = re.compile(r'"(?:\\.|[^"\\])*"')
 EXPECTED_ENTRIES = 670
 SPELLS_PER_RACE = 67
 DUPLICATE_CEILINGS = {"deDE": 589, "enUS": 603, "frFR": 603}  # Historical baseline
@@ -65,8 +65,8 @@ class RacialQualityAudit(unittest.TestCase):
                     with self.subTest(race=race, spell=spell):
                         self.assertTrue(text.strip())
                         self.assertNotIn("%s", text, "Racial texts must work without a target name")
-                        self.assertNotIn("\\n", text)
-                        self.assertNotIn("\\r", text)
+                        self.assertNotIn("\n", text)
+                        self.assertNotIn("\r", text)
                         self.assertNotIn("|", text, "Avoid WoW chat escape sequences")
                         self.assertLessEqual(len(text.encode("utf-8")), 255)
                         self.assertEqual(text.startswith("*"), text.endswith("*"))
