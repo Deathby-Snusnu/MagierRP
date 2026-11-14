@@ -698,3 +698,17 @@ addon.localeData.deDE.racial = {
         PORTAL_THUNDER_BLUFF = { "Der Weg nach Donnerfels ist offen. Achtet auf den ersten Schritt.", "Eine gute Formel für Portal: THUNDER_BLUFF wird nicht beim ersten Windstoß brüchig.", "Für Portal: THUNDER_BLUFF brauch ich eine feste Hand und einen klaren Kopf.", "*klopft die magische Fassung von Portal: THUNDER_BLUFF wie ein frisch geschmiedetes Stück Metall ab.*" },
     },
 }
+
+-- Hand-edited voice expansion: gnomish theory, risk, and practical magic.
+local gnome = addon.localeData.deDE.racial.GNOME
+for _, line in ipairs({
+    "Die Theorie war makellos. Nur der Ärmel ist jetzt kürzer.",
+    "*dreht den angekohlten Handschuh um und entscheidet, dass die Naht noch hält.*",
+    "Ich wollte eine Kerze anzünden. Die Größenordnung muss ich wohl neu kalibrieren.",
+    "Vorsicht! Die Hitze ist berechnet. Die Richtung war eine Schätzung.",
+}) do table.insert(gnome.FIREBALL, line) end
+for _, line in ipairs({
+    "Man kann Wärme nicht vernichten. Aber man kann sie sehr überzeugend woanders hinschicken.",
+    "*haucht gegen eine vereiste Brille und zeichnet eine winzige Korrektur an den Rand.*",
+    "Die Kristallbildung ist wunderschön. Ich hoffe, Ihr könnt sie noch bewundern.",
+}) do table.insert(gnome.FROSTBOLT, line) end
