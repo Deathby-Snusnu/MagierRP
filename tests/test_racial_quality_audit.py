@@ -17,7 +17,7 @@ ENTRY = re.compile(r"^        ([A-Z][A-Z0-9_]+) = \{ (.*?) \},?$", re.M)
 QUOTED = re.compile(r'"(?:\\.|[^"\\])*"')
 EXPECTED_ENTRIES = 670
 SPELLS_PER_RACE = 67
-DUPLICATE_CEILINGS = {"deDE": 589, "enUS": 603, "frFR": 603}  # Historical baseline
+DUPLICATE_CEILINGS = {"deDE": 553, "enUS": 603, "frFR": 603}  # Historical baseline
 
 
 def inspect_racial_catalog(locale):
