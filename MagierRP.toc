@@ -20,6 +20,7 @@ locales\frFR\Racial.lua
 locales\frFR\Ambient.lua
 locales\Finalize.lua
 core\Database.lua
+music\CreativeVoices.lua
 music\MusicRP.lua
 core\Text.lua
 core\Chat.lua
