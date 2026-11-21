@@ -326,9 +326,17 @@ test("MusicRP 0.1.3 remains optional and works in all locales", function()
     state.command("music chance 100")
     equal(app.db.musicEnabled, true)
     equal(app.db.musicChance, 100)
-    app.db.outputLanguage="deDE"
-    local result=app.ChooseMusicText("FIREBALL")
-    assert(result==app.musicRP.deDE.FIREBALL[1] or result==app.musicRP.deDE.FIREBALL[2])
+    for _, language in ipairs({"deDE", "enUS", "frFR"}) do
+        app.db.outputLanguage = language
+        for choice = 1, 2 do
+            state.choice = choice
+            equal(app.TryText("FIREBALL"), true)
+            local expected = app.musicRP[language].FIREBALL[choice]
+            local sent = state.sent[#state.sent]
+            equal(sent.channel, choice == 2 and "EMOTE" or "SAY")
+            equal(sent.text, choice == 2 and expected:sub(2, -2) or expected)
+        end
+    end
     state.command("music chance 101")
     equal(app.db.musicChance,100)
     state.command("music off")
