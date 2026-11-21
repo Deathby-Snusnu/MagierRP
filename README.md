@@ -38,7 +38,7 @@ charakterbezogene SavedVariable `MagierRP_CharacterDB`.
 
 Vorhandene AddOn- und `WTF`-Ordner sichern. Im WoW-Client unter
 `Interface\AddOns\MagierRP` die `MagierRP.toc`, `MagierRP.lua` sowie die
-Ordner `config`, `core` und `locales` aus dem Quellprojekt bereitstellen.
+Ordner `config`, `core`, `locales` und `music` aus dem Quellprojekt bereitstellen.
 Die TOC und alle darin aufgeführten Dateien müssen erhalten bleiben.
 Git-Verwaltung, Entwicklungsquellen und Tests gehören nicht in den Spielordner.
 Danach WoW neu starten und das AddOn aktivieren.
