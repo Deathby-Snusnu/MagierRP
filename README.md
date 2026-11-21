@@ -1,3 +1,16 @@
+## Version 0.1.3: kreative MusicRP-Texte und RPTextStudio-Updates
+
+Acht neue, selbst verfasste, musikalisch inspirierte Sprech-/Emote-Paare in **deDE**, **enUS** und **frFR**. Songtitel und Künstler dienen ausschließlich als interne Inspirationsmetadaten; die Chat-Ausgabe verwendet keine übernommenen Lyrics. Die normalen Text-, Rassen- und Ambient-Pools bleiben erhalten, MusicRP ist **standardmäßig deaktiviert**:
+
+```text
+/mrp music on
+/mrp music chance 15
+/mrp music status
+/mrp music off
+```
+
+Der normale Textchance-/Cooldown-Filter bleibt wirksam. Die Version ist in `MagierRP.toc` von **0.1.2** auf **0.1.3** erhöht, die neue `music/MusicRP.lua` steht in der TOC-Ladeliste. **RPTextStudio:** Im Entwicklungskanal wird eine neuere numerische TOC-Version auf `main` erst *nach dem Merge* erkannt. Für den stabilen Kanal ist zusätzlich ein **GitHub-Release mit Tag `v0.1.3`** erforderlich, dessen enthaltene TOC ebenfalls `0.1.3` ausweist. Ein Pull Request allein aktualisiert keinen Release; vor dem Merge/Release die Tests kontrollieren. Lokale Änderungen vor der Update-Installation sichern und die Installationsvorschau beachten.
+
 # Magier RP
 
 ## Neue freie RP-Aktionen (0.1.2)
@@ -18,7 +31,7 @@ Texte und gespeicherte Einstellungen bleiben unverändert.
 
 MagierRP ist ein eigenständiges WoW-Rollenspiel-AddOn für die Klasse `MAGE`.
 Es bietet manuell aufgerufene Zauber- und Ambient-Texte in `deDE`, `enUS`
-und `frFR`. Die TOC deklariert Version `0.1.2`, Interface `16001` und die
+und `frFR`. Die TOC deklariert Version `0.1.3`, Interface `16001` und die
 charakterbezogene SavedVariable `MagierRP_CharacterDB`.
 
 ## Installation
