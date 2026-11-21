@@ -307,6 +307,41 @@ test("manual ambient and emotes use the intended chat channels", function()
     equal(state.sent[2].text, "hebt die Hand.")
 end)
 
+test("MusicRP 0.1.3 remains optional and works in all locales", function()
+    local env, app, state = newAddon()
+    state.login()
+    equal(app.db.musicEnabled, false)
+    equal(app.db.musicChance, 15)
+    for _, language in ipairs({"deDE","enUS","frFR"}) do
+        app.db.outputLanguage=language
+        for key, reference in pairs(app.musicRPReferences) do
+            local pool=app.musicRP[language][key]
+            assert(type(reference.artist)=="string" and type(reference.song)=="string")
+            assert(type(pool)=="table" and #pool==2)
+            assert(pool[2]:sub(1,1)=="*" and pool[2]:sub(-1)=="*")
+            assert(#pool[1]<=255 and #pool[2]<=255)
+        end
+    end
+    state.command("music on")
+    state.command("music chance 100")
+    equal(app.db.musicEnabled, true)
+    equal(app.db.musicChance, 100)
+    app.db.outputLanguage="deDE"
+    local result=app.ChooseMusicText("FIREBALL")
+    assert(result==app.musicRP.deDE.FIREBALL[1] or result==app.musicRP.deDE.FIREBALL[2])
+    state.command("music chance 101")
+    equal(app.db.musicChance,100)
+    state.command("music off")
+    equal(app.ChooseMusicText("FIREBALL"),nil)
+end)
+
+test("MusicRP repairs invalid saved settings", function()
+    local _, app, state = newAddon({musicEnabled="yes", musicChance=140})
+    state.login()
+    equal(app.db.musicEnabled,false)
+    equal(app.db.musicChance,15)
+end)
+
 for _, item in ipairs(tests) do
     local ok, err = pcall(item.callback)
     if not ok then
