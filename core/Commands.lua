@@ -16,6 +16,7 @@ end
 addon.Notify = Notify
 
 local function ShowHelp()
+    Notify("/mrp music on|off|status|chance 0-100")
     Notify("Befehle (auch /magierrp):")
     Notify("/mrp | /mrp help - diese Hilfe")
     Notify("/mrp status - Einstellungen anzeigen")
@@ -139,6 +140,7 @@ local function ShowStatus()
     Notify("Sprache: " .. tostring(db.outputLanguage) .. " | Kanal: " .. tostring(db.chatChannel or "SAY"))
     Notify("Volkstypische Texte: " .. tostring(db.racialTextChance) .. "%")
     Notify("Ambient: manuell mit /mrp ambient")
+    Notify("MusicRP: " .. (db.musicEnabled and "an" or "aus") .. " | " .. tostring(db.musicChance) .. "%")
 end
 
 local function ShowDebug()
@@ -149,6 +151,25 @@ local function ShowDebug()
         ", bereit=" .. tostring(addon.ready))
     Notify("Katalogschluessel: " .. tostring(#(addon.spellKeys or {})) ..
         ", Sprache=" .. tostring(addon.db.outputLanguage))
+end
+
+local function MusicCommand(argument)
+    local command, value = (argument or ""):match("^%s*(%S*)%s*(.-)%s*$")
+    command = (command or ""):lower()
+    if command == "on" or command == "off" then
+        addon.db.musicEnabled = command == "on"
+    elseif command == "chance" then
+        local n = tonumber(value)
+        if not n or n ~= math.floor(n) or n < 0 or n > 100 then
+            Notify("Benutzung: /mrp music chance 0-100")
+            return
+        end
+        addon.db.musicChance = n
+    elseif command ~= "" and command ~= "status" then
+        Notify("Benutzung: /mrp music on|off|status|chance 0-100")
+        return
+    end
+    Notify("MusicRP: " .. (addon.db.musicEnabled and "an" or "aus") .. " | Chance " .. tostring(addon.db.musicChance) .. "%")
 end
 
 SlashCmdList["MAGIERRP"] = function(message)
@@ -169,6 +190,7 @@ SlashCmdList["MAGIERRP"] = function(message)
     elseif action == "racial" then SetNumber(argument,"racialTextChance",100,"Volkstypische Texte","racial <0-100>")
     elseif action == "language" then SetLanguage(argument)
     elseif action == "channel" then SetChannel(argument)
+    elseif action == "music" then MusicCommand(argument)
     elseif action == "ambient" then
         if argument ~= "" and argument:lower() ~= "test" then
             Notify("Benutzung: /mrp ambient [test]")

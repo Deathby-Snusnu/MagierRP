@@ -59,6 +59,8 @@ function addon.BuildText(key)
     local entry = (entries and entries[key]) or (addon.localeData.deDE.texts and addon.localeData.deDE.texts[key])
     if type(entry) ~= "table" then return nil end
     local target = SelectedTarget(key)
+    local music = addon.ChooseMusicText and addon.ChooseMusicText(key)
+    if music then return music end
     local pool = target and entry.ziel or entry.gruppe
     -- Give a known race its own voice on some casts; fall back to spell pool.
     local _, race = UnitRace("player")

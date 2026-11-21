@@ -14,8 +14,12 @@ function addon.InitializeDatabase()
     if type(addon.db.cooldown) ~= "number" or addon.db.cooldown < 0 then addon.db.cooldown = 0 end
     if type(addon.db.racialTextChance) ~= "number" then addon.db.racialTextChance = 40 end
     addon.db.racialTextChance = math.max(0, math.min(100, addon.db.racialTextChance))
-    for _, key in ipairs({"ambientEnabled", "ambientInCombat"}) do
+    for _, key in ipairs({"ambientEnabled", "ambientInCombat", "musicEnabled"}) do
         if type(addon.db[key]) ~= "boolean" then addon.db[key] = addon.defaults[key] end
+    end
+    if type(addon.db.musicChance) ~= "number" or addon.db.musicChance ~= math.floor(addon.db.musicChance)
+        or addon.db.musicChance < 0 or addon.db.musicChance > 100 then
+        addon.db.musicChance = addon.defaults.musicChance
     end
     if type(addon.db.ambientChance) ~= "number" or addon.db.ambientChance < 0 or addon.db.ambientChance > 100 then addon.db.ambientChance = 30 end
     for _, key in ipairs({"ambientMinInterval", "ambientMaxInterval"}) do
