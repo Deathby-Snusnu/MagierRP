@@ -36,6 +36,20 @@ addon.musicRP.deDE.PORTAL = { "Jenseits dieses Kreises wartet ein Weg ohne Namen
 addon.musicRP.enUS.PORTAL = { "Beyond this circle is a road without a name.", "*checks the portal edges and draws a question mark in the air.*" }
 addon.musicRP.frFR.PORTAL = { "Au-delà de ce cercle, une route sans nom vous attend.", "*vérifie les bords du portail et trace un point d'interrogation.*" }
 
+-- Extra original spoken lines and actions for existing music-inspired keys.
+table.insert(addon.musicRP.deDE.ARCANE_BLAST, "Diese Formel sollte nur leicht leuchten. Warum summt der Boden?")
+table.insert(addon.musicRP.deDE.ARCANE_BLAST, "*schiebt die Schutzbrille zurecht und misst den Abstand zur nächsten Wand.*")
+table.insert(addon.musicRP.enUS.ARCANE_BLAST, "This formula was meant to glow faintly. Why is the floor humming?")
+table.insert(addon.musicRP.enUS.ARCANE_BLAST, "*adjusts the goggles and measures the distance to the nearest wall.*")
+table.insert(addon.musicRP.frFR.ARCANE_BLAST, "Cette formule devait à peine luire. Pourquoi le sol bourdonne-t-il ?")
+table.insert(addon.musicRP.frFR.ARCANE_BLAST, "*ajuste ses lunettes et mesure la distance jusqu'au mur.*")
+table.insert(addon.musicRP.deDE.POLYMORPH, "Die Versuchsanordnung ist stabil. Nur das Ergebnis mäht.")
+table.insert(addon.musicRP.deDE.POLYMORPH, "*vermerkt die unerwartete Wollproduktion im Laborbuch.*")
+table.insert(addon.musicRP.enUS.POLYMORPH, "The experiment is stable. Only the result is bleating.")
+table.insert(addon.musicRP.enUS.POLYMORPH, "*records unexpected wool production in the lab notebook.*")
+table.insert(addon.musicRP.frFR.POLYMORPH, "L'expérience est stable. Seul le résultat bêle.")
+table.insert(addon.musicRP.frFR.POLYMORPH, "*note une production de laine imprévue dans son carnet.*")
+
 function addon.ChooseMusicText(key)
     local db = addon.db
     if not db or not db.musicEnabled or (db.musicChance or 0) <= 0 then return nil end

@@ -317,9 +317,16 @@ test("MusicRP 0.1.3 remains optional and works in all locales", function()
         for key, reference in pairs(app.musicRPReferences) do
             local pool=app.musicRP[language][key]
             assert(type(reference.artist)=="string" and type(reference.song)=="string")
-            assert(type(pool)=="table" and #pool==2)
-            assert(pool[2]:sub(1,1)=="*" and pool[2]:sub(-1)=="*")
-            assert(#pool[1]<=255 and #pool[2]<=255)
+            assert(type(pool)=="table" and (#pool==2 or #pool==4))
+            for index, text in ipairs(pool) do
+                assert(type(text)=="string")
+                if index % 2 == 0 then
+                    assert(text:sub(1,1)=="*" and text:sub(-1)=="*")
+                else
+                    assert(text:sub(1,1)~="*" and text:sub(-1)~="*")
+                end
+                assert(#text<=255)
+            end
         end
     end
     state.command("music on")
@@ -335,6 +342,16 @@ test("MusicRP 0.1.3 remains optional and works in all locales", function()
             local sent = state.sent[#state.sent]
             equal(sent.channel, choice == 2 and "EMOTE" or "SAY")
             equal(sent.text, choice == 2 and expected:sub(2, -2) or expected)
+        end
+        for _, key in ipairs({"ARCANE_BLAST", "POLYMORPH"}) do
+            for choice = 3, 4 do
+                state.choice = choice
+                equal(app.TryText(key), true)
+                local expected = app.musicRP[language][key][choice]
+                local sent = state.sent[#state.sent]
+                equal(sent.channel, choice == 4 and "EMOTE" or "SAY")
+                equal(sent.text, choice == 4 and expected:sub(2, -2) or expected)
+            end
         end
     end
     state.command("music chance 101")
