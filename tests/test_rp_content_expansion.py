@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LOCALES = ("deDE", "enUS", "frFR")
 CLASS_KEYS = ["ARCANE_RESEARCH","LEYLINE_SENSE","WAND_MAINTENANCE","PORTAL_ETIQUETTE","REAGENT_PREPARATION","SPELLBOOK_STUDY"]
 EXPECTED = 73
-VERSION = "0.1.3"
+VERSION = "0.1.4"
 
 
 class CreativeRpExpansion(unittest.TestCase):

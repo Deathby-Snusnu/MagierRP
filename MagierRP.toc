@@ -3,7 +3,7 @@
 
 ## Interface: 16001
 ## Title: Magier RP
-## Version: 0.1.3
+## Version: 0.1.4
 ## SavedVariablesPerCharacter: MagierRP_CharacterDB
 ## OptionalDeps: RPChatMod
 
@@ -12,12 +12,15 @@ locales\Init.lua
 locales\deDE\Texts.lua
 locales\deDE\Racial.lua
 locales\deDE\Ambient.lua
+locales\deDE\VoicesExpansion.lua
 locales\enUS\Texts.lua
 locales\enUS\Racial.lua
 locales\enUS\Ambient.lua
+locales\enUS\VoicesExpansion.lua
 locales\frFR\Texts.lua
 locales\frFR\Racial.lua
 locales\frFR\Ambient.lua
+locales\frFR\VoicesExpansion.lua
 locales\Finalize.lua
 core\Database.lua
 music\CreativeVoices.lua
