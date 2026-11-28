@@ -36,7 +36,10 @@ class ExpandedVoices(unittest.TestCase):
                 for race in RACES:
                     self.assertRegex(ambient, rf"\b{race}\s*=\s*\{{")
                     self.assertIn(f"add(root.ambient.{race},", data)
-                lines = re.findall(r'"((?:\\.|[^"\\])*)"', data.split("-- Additive", 1)[-1])
+                lines = []
+                for line in data.splitlines():
+                    if line.startswith("add(root."):
+                        lines.extend(re.findall(r\'"((?:\\\\.|[^"\\\\])*)"\', line))
                 self.assertGreaterEqual(len(lines), 16)
                 self.assertTrue(all("%s" not in line for line in lines))
                 self.assertTrue(all(len(line.encode("utf-8")) <= 255 for line in lines))
