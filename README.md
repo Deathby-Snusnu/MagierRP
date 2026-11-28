@@ -1,3 +1,15 @@
+## 0.1.4: Mehrsprachige Zauber- und Ambient-Stimmen (Entwurf)
+
+In der nächsten Entwicklungsstufe der RP-AddOn-Familie ergänzt `locales/<Sprache>/VoicesExpansion.lua` die bestehenden Textpools **additiv** in `deDE`, `enUS` und `frFR`. Die neue Datei wird erst nach `Texts.lua` und `Ambient.lua` geladen, damit die Tabellen bereits existieren. Eigene Textänderungen bleiben erhalten.
+
+- Fünf Kernfähigkeiten: `ARCANE_BLAST`, `ICE_LANCE`, `POLYMORPH`, `PORTAL`, `FIREBALL`. Je Fähigkeit kommen eine gesprochene Variante und eine beschreibende `*...*`-Geste pro Sprache hinzu.
+- Drei charakteristische Volk-Ambient-Pools: Gnome, Menschen, Blutelfen. Je Volk eine neue gesprochene Variante und ein `*...*`-Emote pro Sprache.
+- Insgesamt 16 neue Originalzeilen pro Sprache beziehungsweise 48 über die drei Sprachfassungen.
+- Keine neuen Event-Listener, keine automatischen Buff-Danksagungen, keine geschützten WoW-UI-Funktionen. Die bestehende Entscheidung über `/say` und `/me` bleibt beim jeweiligen Klassen-AddOn.
+- Test: `tests/test_voices_expansion_20261128.py` prüft Schlüssel, Laden, Rassen, Sprachparität und Textlängen. Vor Ingame-Veröffentlichung CI und praktische Tests ausführen.
+
+**Versionspflege:** Die TOC ist für diese Entwicklung auf `0.1.4` gestellt. Dies ist noch kein Release; RPTextStudio und RPAddOns müssen beim späteren Merge/Update die neuen Dateien und diese Version berücksichtigen.
+
 ## Version 0.1.3: kreative MusicRP-Texte und RPTextStudio-Updates
 
 Acht neue, selbst verfasste, musikalisch inspirierte Sprech-/Emote-Paare in **deDE**, **enUS** und **frFR**. Songtitel und Künstler dienen ausschließlich als interne Inspirationsmetadaten; die Chat-Ausgabe verwendet keine übernommenen Lyrics. Die normalen Text-, Rassen- und Ambient-Pools bleiben erhalten, MusicRP ist **standardmäßig deaktiviert**:
