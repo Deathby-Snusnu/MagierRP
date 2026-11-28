@@ -39,7 +39,7 @@ class ExpandedVoices(unittest.TestCase):
                 lines = []
                 for line in data.splitlines():
                     if line.startswith("add(root."):
-                        lines.extend(re.findall(r\'"((?:\\\\.|[^"\\\\])*)"\', line))
+                        lines.extend(re.findall(r'"([^"]+)"', line))
                 self.assertGreaterEqual(len(lines), 16)
                 self.assertTrue(all("%s" not in line for line in lines))
                 self.assertTrue(all(len(line.encode("utf-8")) <= 255 for line in lines))
